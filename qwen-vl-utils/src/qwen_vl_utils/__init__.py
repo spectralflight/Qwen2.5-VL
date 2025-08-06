@@ -4,4 +4,6 @@ from .vision_process import (
     fetch_video,
     process_vision_info,
     smart_resize,
+    ImageConfig,
+    VideoConfig,
 )
