@@ -11,6 +11,7 @@ import warnings
 from functools import lru_cache
 from io import BytesIO
 from typing import Optional
+from typing_extensions import TypedDict
 
 import requests
 import torch
@@ -40,6 +41,43 @@ FPS_MAX_FRAMES = 768
 # Remember to adjust it according to your own configuration.
 VIDEO_TOTAL_PIXELS = int(float(os.environ.get('VIDEO_MAX_PIXELS', 128000 * 28 * 28 * 0.9)))
 logger.info(f"set VIDEO_TOTAL_PIXELS: {VIDEO_TOTAL_PIXELS}")
+
+
+class ImageConfig(TypedDict, total=False):
+    """Config for vision processing."""
+
+    min_pixels: Optional[int]
+    """Min pixels of the image"""
+    max_pixels: Optional[int]
+    """Max pixels of the image"""
+
+    resized_height: Optional[int]
+    """Resized height of the image"""
+    resized_width: Optional[int]
+    """Resized width of the image"""
+
+
+class VideoConfig(ImageConfig, total=False):
+    """Config for video processing."""
+
+    video_start: Optional[float]
+    """Start time of the video"""
+    video_end: Optional[float]
+    """End time of the video"""
+
+    nframes: Optional[int]
+    """Number of frames of the video"""
+
+    fps: Optional[float]
+    """FPS of the video"""
+    min_frames: Optional[int]
+    """Min frames of the video"""
+    max_frames: Optional[int]
+    """Max frames of the video"""
+
+    total_pixels: Optional[int]
+    """Total pixels of the video"""
+
 
 
 def round_by_factor(number: int, factor: int) -> int:
