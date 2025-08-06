@@ -44,39 +44,44 @@ logger.info(f"set VIDEO_TOTAL_PIXELS: {VIDEO_TOTAL_PIXELS}")
 
 
 class ImageConfig(TypedDict, total=False):
-    """Config for vision processing."""
+    """Config for vision processing.
+
+    Attributes:
+        min_pixels: Min pixels of the image
+        max_pixels: Max pixels of the image
+        resized_height: Resized height of the image
+        resized_width: Resized width of the image
+    """
 
     min_pixels: Optional[int]
-    """Min pixels of the image"""
     max_pixels: Optional[int]
-    """Max pixels of the image"""
 
     resized_height: Optional[int]
-    """Resized height of the image"""
     resized_width: Optional[int]
-    """Resized width of the image"""
 
 
 class VideoConfig(ImageConfig, total=False):
-    """Config for video processing."""
+    """Config for video processing.
+
+    Attributes:
+        video_start: Start time of the video
+        video_end: End time of the video
+        nframes: Number of frames of the video
+        fps: FPS of the video
+        min_frames: Min frames of the video
+        max_frames: Max frames of the video
+    """
 
     video_start: Optional[float]
-    """Start time of the video"""
     video_end: Optional[float]
-    """End time of the video"""
 
     nframes: Optional[int]
-    """Number of frames of the video"""
 
     fps: Optional[float]
-    """FPS of the video"""
     min_frames: Optional[int]
-    """Min frames of the video"""
     max_frames: Optional[int]
-    """Max frames of the video"""
 
     total_pixels: Optional[int]
-    """Total pixels of the video"""
 
 
 
